@@ -1,5 +1,5 @@
 name = "Rings For All"
-uid = "rings-for-all-v1.0.0"
+uid = "rings-for-all-v1.1.0"
 version = 6
 copyright = ""
 description = [[
@@ -7,7 +7,7 @@ Shows radiuses of weapons of selected units and build range. Also shows them wit
 See options for mod in ReUI.Options menu!
 
 ]]
-author = "4z0t, Nomander"
+author = "4z0t, Nomander, HotCheese"
 icon = "/mods/RFA/icon.png"
 url = ""
 selectable = true
@@ -20,4 +20,4 @@ conflicts = {}
 before = {}
 after = {}
 
-ReUI = 'RFA=1.0.0'
+ReUI = 'RFA=1.1.0'
