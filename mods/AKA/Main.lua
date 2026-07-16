@@ -384,7 +384,9 @@ function Main()
                 import("/lua/keymap/hotbuild.lua").buildAction "Sensors"
             end
         end
-
+        local SpyPlane = function()
+            import("/lua/keymap/hotbuild.lua").buildAction "T3_Spy_Plane"
+        end
         CategoryMatcher "Select nearest air scout / build sensors"
             :Modifiers { shift = true }
             {
@@ -392,6 +394,8 @@ function Main()
                     :Action "UI_SelectByCategory +nearest AIR INTELLIGENCE",
                 CategoryAction(categories.AIR * categories.INTELLIGENCE)
                     :Action "UI_SelectByCategory AIR INTELLIGENCE",
+                CategoryAction(categories.AIR * categories.TECH3 * categories.FACTORY)
+                    :Action(SpyPlane),
                 CategoryAction()
                     :Match(function(selection, category)
                         return true
