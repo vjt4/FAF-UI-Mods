@@ -121,6 +121,20 @@ function Main()
                     :Action(ToggleRepeatQueue)
             }
 
+            StartLaunchCommandMode = function()
+            local availableOrders = GetUnitCommandData(GetSelectedUnits())
+            local launchOrder
+            for _, order in availableOrders do
+                if order == 'RULEUCC_Tactical' or order == 'RULEUCC_Nuke' then
+                    launchOrder = order
+                    break
+                end
+            end
+            if launchOrder then
+                import('/lua/ui/game/commandmode.lua').StartCommandMode('order', { name = launchOrder })
+            end
+        end
+
         CategoryMatcher "Launch missile / attack-reclaim / attack order"
             :Modifiers { shift = true }
             {
@@ -128,6 +142,10 @@ function Main()
                     :Action 'StartCommandMode order RULEUCC_Nuke',
                 CategoryAction(categories.SILO * categories.STRUCTURE * categories.TECH2)
                     :Action 'StartCommandMode order RULEUCC_Tactical',
+                CategoryAction(categories.COMMAND + categories.SUBCOMMANDER)
+                    :Action(function(selection)
+                        StartLaunchCommandMode()
+                    end),
                 CategoryAction(categories.ENGINEER * (categories.TECH1 + categories.TECH2 + categories.TECH3)
                     + categories.FACTORY * categories.STRUCTURE - categories.SUBCOMMANDER)
                     :Action(function(selection)
